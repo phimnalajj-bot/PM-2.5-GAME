@@ -1,0 +1,9 @@
+#mapButton{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:white;
+  padding:10px 15px;
+  border-radius:15px;
+  z-index:100;
+}

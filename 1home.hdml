@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPixel RPG - Character Status</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#342b4b",
+                        "on-background": "#e6e0e9",
+                        "surface-container-low": "#1d1b20",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-variant": "#36343a",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e6e0e9",
+                        "tertiary-container": "#c9a74d",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "on-secondary-fixed": "#1f1635",
+                        "primary-fixed": "#e9ddff",
+                        "tertiary-fixed": "#ffdf93",
+                        "primary-container": "#6750a4",
+                        "on-primary": "#381e72",
+                        "surface": "#141218",
+                        "on-primary-fixed": "#22005d",
+                        "inverse-primary": "#6750a4",
+                        "surface-container-highest": "#36343a",
+                        "surface-bright": "#3b383e",
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-tertiary": "#3e2e00",
+                        "surface-tint": "#cfbcff",
+                        "on-primary-container": "#e0d2ff",
+                        "surface-dim": "#141218",
+                        "inverse-on-surface": "#322f35",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "background": "#141218",
+                        "on-secondary-container": "#bfb2da",
+                        "outline-variant": "#494551",
+                        "surface-container": "#211f24",
+                        "surface-container-lowest": "#0f0d13",
+                        "tertiary": "#e7c365",
+                        "surface-container-high": "#2b292f",
+                        "on-error": "#690005",
+                        "secondary-container": "#4d4465",
+                        "on-surface-variant": "#cbc4d2",
+                        "on-surface": "#e6e0e9",
+                        "primary": "#cfbcff",
+                        "on-tertiary-container": "#503d00",
+                        "secondary-fixed": "#e9ddff",
+                        "outline": "#948e9c",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "secondary": "#cdc0e9",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "tertiary-fixed-dim": "#e7c365"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "panel-padding": "24px",
+                        "margin-edge": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "pixel-step": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-pixel-sm": ["JetBrains Mono"],
+                        "headline-lg": ["Space Grotesk"],
+                        "label-tech": ["JetBrains Mono"],
+                        "headline-md": ["Space Grotesk"],
+                        "display-pixel": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .pixel-border {
+            box-shadow: 
+                -2px 0 0 0 #494551,
+                2px 0 0 0 #494551,
+                0 -2px 0 0 #494551,
+                0 2px 0 0 #494551;
+        }
+        .pixel-bevel {
+            box-shadow: 
+                inset 2px 2px 0 0 rgba(207, 188, 255, 0.2),
+                inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+        }
+        .glass-panel {
+            background: rgba(29, 27, 32, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 142, 156, 0.2);
+        }
+        .status-fill {
+            background-size: 20px 20px;
+            background-image: linear-gradient(90deg, transparent 18px, rgba(255,255,255,0.1) 1px);
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge py-unit bg-surface-container/80 dark:bg-surface-container-low/80 backdrop-blur-xl border-b-2 border-outline-variant dark:border-outline">
+<div class="flex items-center gap-4">
+<span class="font-display-pixel text-display-pixel text-primary dark:text-surface-tint tracking-tighter text-[24px]">EcoPixel RPG</span>
+<nav class="hidden md:flex gap-6 ml-8">
+<a class="text-primary dark:text-primary-fixed font-bold font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Vitals</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant opacity-70 font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Inventory</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant opacity-70 font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-2 py-1 rounded" href="#">Missions</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-primary-container/20 transition-colors rounded-full">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+<button class="p-2 hover:bg-primary-container/20 transition-colors rounded-full">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col py-panel-padding bg-surface-container-highest/90 dark:bg-surface-container-lowest/90 backdrop-blur-2xl border-r-2 border-outline-variant w-64 hidden lg:flex">
+<div class="mt-20 px-4 mb-8">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg border border-outline-variant">
+<div class="w-12 h-12 bg-primary-container rounded flex items-center justify-center overflow-hidden">
+<img alt="Player Character Portrait" class="w-full h-full object-cover" data-alt="A detailed 16-bit pixel art portrait of a futuristic scientist-adventurer wearing a high-tech environmental respirator and glowing neon blue goggles. The character has messy silver hair and is set against a dark, moody background with subtle hints of industrial scaffolding. The art style is crisp and nostalgic, using a vibrant color palette of tech-blue and charcoal gray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjuco6ID5eFlFXmeSLDpO4fyg7P4vy0L7tZMDsGj8YpOkS60gfSoC_yd2zCASDhIX4ABz07gVobUaI2bOb7FAuQ6ERW-rtxKile2LD_BuM4wRIslVUCUrdJtEOTNZtsk78InNT7RGQYNus8rmrVB8ua53q2G1V4twUZ9TruOaQgDEB1FOsnSd9xJdw9p9XvNoUjL5ViwPExqQpPsp6nNF1HZp_0mS8rFS9VEmvXd5JVtijwCpmt4gyFeMH1ELlhRnEZFJax5PVlwNn"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-[16px] text-primary">Scientist-Adventurer</h3>
+<p class="font-body-md text-[12px] text-on-surface-variant">Level 12 Eco-Guardian</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-body-md">World Map</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container dark:bg-secondary dark:text-on-secondary border-l-4 border-primary px-4 py-3 mx-2 rounded-lg translate-x-1" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-
+
+<a href="2home.html">
+  <button>Continue</button>
+</a>
+
+
+<div id="mapButton">
+  🗺️ Map
+</div>

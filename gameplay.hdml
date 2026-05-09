@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPixel RPG - Urban Exploration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#cfbcff",
+                      "secondary": "#cdc0e9",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#22005d",
+                      "primary": "#cfbcff",
+                      "on-primary-container": "#e0d2ff",
+                      "on-background": "#e6e0e9",
+                      "inverse-primary": "#6750a4",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "inverse-surface": "#e6e0e9",
+                      "surface": "#141218",
+                      "primary-container": "#6750a4",
+                      "on-primary": "#381e72",
+                      "on-secondary": "#342b4b",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "surface-tint": "#cfbcff",
+                      "surface-container-lowest": "#0f0d13",
+                      "on-secondary-fixed": "#1f1635",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "surface-dim": "#141218",
+                      "inverse-on-surface": "#322f35",
+                      "error": "#ffb4ab",
+                      "surface-container-low": "#1d1b20",
+                      "secondary-container": "#4d4465",
+                      "background": "#141218",
+                      "surface-container-highest": "#36343a",
+                      "on-tertiary-container": "#503d00",
+                      "on-surface": "#e6e0e9",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "surface-bright": "#3b383e",
+                      "on-secondary-container": "#bfb2da",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#241a00",
+                      "tertiary-fixed": "#ffdf93",
+                      "tertiary": "#e7c365",
+                      "surface-container": "#211f24",
+                      "outline": "#948e9c",
+                      "on-tertiary": "#3e2e00",
+                      "on-error": "#690005",
+                      "surface-container-high": "#2b292f",
+                      "secondary-fixed": "#e9ddff",
+                      "primary-fixed": "#e9ddff",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "tertiary-container": "#c9a74d",
+                      "on-surface-variant": "#cbc4d2",
+                      "outline-variant": "#494551",
+                      "surface-variant": "#36343a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "gutter": "16px",
+                      "panel-padding": "24px",
+                      "pixel-step": "4px",
+                      "margin-edge": "32px"
+              },
+              "fontFamily": {
+                      "label-tech": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Space Grotesk"],
+                      "display-pixel": ["Space Grotesk"],
+                      "label-pixel-sm": ["JetBrains Mono"],
+                      "headline-md": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .pixel-bevel {
+            box-shadow: inset 2px 2px 0px 0px rgba(255, 255, 255, 0.1), 
+                        inset -2px -2px 0px 0px rgba(0, 0, 0, 0.4);
+        }
+        .pixel-border {
+            border: 2px solid #494551;
+            image-rendering: pixelated;
+        }
+        .status-gradient-hp {
+            background: linear-gradient(90deg, #ffb4ab 0%, #93000a 100%);
+        }
+        .status-gradient-stamina {
+            background: linear-gradient(90deg, #e7c365 0%, #594400 100%);
+        }
+        .status-gradient-energy {
+            background: linear-gradient(90deg, #cfbcff 0%, #381e72 100%);
+        }
+        .pixel-art-canvas {
+            image-rendering: pixelated;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sprite-shadow {
+            background: rgba(0, 0, 0, 0.3);
+            filter: blur(4px);
+            border-radius: 50%;
+            width: 40px;
+            height: 12px;
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        /* Sublte breathing animation for the sprite */
+        @keyframes sprite-idle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-sprite {
+            animation: sprite-idle 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden font-body-md select-none">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge py-unit bg-surface-container/80 backdrop-blur-xl border-b-2 border-outline-variant">
+<div class="flex items-center gap-gutter">
+<span class="font-display-pixel text-headline-md text-primary tracking-tighter">EcoPixel RPG</span>
+<nav class="hidden md:flex gap-gutter items-center ml-8">
+<span class="text-primary font-bold font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-3 py-1 rounded cursor-pointer">Explore</span>
+<span class="text-on-surface-variant opacity-70 font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-3 py-1 rounded cursor-pointer">Social</span>
+<span class="text-on-surface-variant opacity-70 font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-3 py-1 rounded cursor-pointer">Skills</span>
+<span class="text-on-surface-variant opacity-70 font-label-tech text-label-tech hover:bg-primary-container/20 transition-colors px-3 py-1 rounded cursor-pointer">Journal</span>
+</nav>
+</div>
+<div class="flex items-center gap-unit">
+<button class="p-2 hover:bg-primary-container/20 transition-colors rounded-full active:scale-95">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+<button class="p-2 hover:bg-primary-container/20 transition-colors rounded-full active:scale-95">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Game Canvas Area -->
+<main class="relative w-screen h-screen pt-16 pb-16 md:pb-0 overflow-hidden">
+<!-- Game World Background (Vibrant Pixel Art City) -->
+<div class="absolute inset-0 z-0 bg-surface-dim">
+<img class="w-full h-full object-cover pixel-art-canvas opacity-80" data-alt="A sprawling 2D isometric pixel-art cityscape at dusk with neon signs in teal and magenta illuminating wet asphalt streets. Small pixel-art trees with blocky green leaves line the sidewalks near brick-textured storefronts. The atmosphere is dense and moody with vibrant colors popping against the dark night." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnwroSgUsaTSFkzxw151PQEW5WUMP3jW1lfOanGNLsAOJ8_Lq5lNKencCB-u2hdkZXu0PF43MP2SqpoYGLUlRzL-PLUrUiy9DFoGpUzPi-187HUZlnwyU8QhzdscJaJv5b0j5M5MWvAJ3cV-UgvlwHxouwptgEc-BAofLf2C0Ch8_kRwzXaQ08yAbVcq_I_GvBA9eZXgf37OVTIkd2t8eSWS727ocH6JBpcjmOj5CiM4k09XWiVaOVSLD5IvxtOyL-MnpPPJrUFv5j"/>
+</div>
+<!-- Central Player Sprite (3/4 Side Profile) -->
+<div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+<div class="relative w-32 h-32 flex items-center justify-center animate-sprite" style="background: transparent; border: none; box-shadow: none;">
+<!-- Drop Shadow -->
+<div class="sprite-shadow"></div>
+<!-- Character Sprite -->
+<img class="w-24 h-24 pixel-art-canvas" data-alt="A detailed 2D pixel-art character sprite in a 3/4 side-profile view. The character is a young explorer wearing a yellow hooded jacket with glowing teal accents, dark tech-trousers, and bulky boots. They have a small mechanical drone hovering slightly above their shoulder. The character is in a dynamic idle pose, looking ready to move, with arms slightly bent at the sides. The style is sharp 16-bit retro RPG art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZbcMDTxXvTIPTUdW6SM_0wpmWc_1SX4BmrAjadtXhmM1fIBvDj_2QJgPTYGshdY7A3rqWrB-FFNsW8klhmQ8MvIROajd9SSMo-h
+
+<a href="pm.html">
+  <button>Check PM2.5</button>
+</a>
+
+
+<div id="mapButton">
+  🗺️ Map
+</div>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPixel RPG - Terminal Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#141218",
+                    "surface-container-lowest": "#0f0d13",
+                    "surface-container-highest": "#36343a",
+                    "primary": "#cfbcff",
+                    "on-background": "#e6e0e9",
+                    "outline": "#948e9c",
+                    "inverse-surface": "#e6e0e9",
+                    "primary-container": "#6750a4",
+                    "on-secondary": "#342b4b",
+                    "on-primary-fixed-variant": "#4f378a",
+                    "tertiary-fixed": "#ffdf93",
+                    "on-secondary-fixed": "#1f1635",
+                    "on-secondary-container": "#bfb2da",
+                    "tertiary-fixed-dim": "#e7c365",
+                    "on-tertiary-fixed-variant": "#594400",
+                    "secondary-fixed-dim": "#cdc0e9",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#6750a4",
+                    "on-surface": "#e6e0e9",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-container-low": "#1d1b20",
+                    "outline-variant": "#494551",
+                    "on-error": "#690005",
+                    "inverse-on-surface": "#322f35",
+                    "on-primary": "#381e72",
+                    "error": "#ffb4ab",
+                    "primary-fixed": "#e9ddff",
+                    "tertiary": "#e7c365",
+                    "surface-tint": "#cfbcff",
+                    "secondary": "#cdc0e9",
+                    "tertiary-container": "#c9a74d",
+                    "surface-container-high": "#2b292f",
+                    "on-primary-container": "#e0d2ff",
+                    "on-tertiary-container": "#503d00",
+                    "on-secondary-fixed-variant": "#4b4263",
+                    "background": "#141218",
+                    "surface-container": "#211f24",
+                    "on-primary-fixed": "#22005d",
+                    "surface-bright": "#3b383e",
+                    "on-tertiary": "#3e2e00",
+                    "primary-fixed-dim": "#cfbcff",
+                    "on-surface-variant": "#cbc4d2",
+                    "surface-variant": "#36343a",
+                    "secondary-fixed": "#e9ddff",
+                    "secondary-container": "#4d4465",
+                    "surface": "#141218"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-edge": "32px",
+                    "pixel-step": "4px",
+                    "gutter": "16px",
+                    "unit": "4px",
+                    "panel-padding": "24px"
+            },
+            "fontFamily": {
+                    "label-tech": ["JetBrains Mono"],
+                    "headline-md": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "label-pixel-sm": ["JetBrains Mono"],
+                    "display-pixel": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                    "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pixel-border {
+            box-shadow: 
+                0 -2px 0 0 #494551,
+                0 2px 0 0 #494551,
+                -2px 0 0 0 #494551,
+                2px 0 0 0 #494551;
+        }
+        .pixel-bevel {
+            box-shadow: 
+                inset 2px 2px 0 0 rgba(207, 188, 255, 0.2),
+                inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+        }
+        .pixel-bevel:active {
+            box-shadow: 
+                inset -2px -2px 0 0 rgba(207, 188, 255, 0.2),
+                inset 2px 2px 0 0 rgba(0, 0, 0, 0.4);
+        }
+        .glass-panel {
+            background: rgba(20, 18, 24, 0.8);
+            backdrop-filter: blur(16px);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1d1b20; }
+        ::-webkit-scrollbar-thumb { background: #494551; }
+        ::-webkit-scrollbar-thumb:hover { background: #cfbcff; }
+    </style>
+</head>
+<body class="bg-surface-dim text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Anchor -->
+<header class="bg-transparent text-primary flex justify-between items-start w-full px-margin-edge pt-panel-padding z-50">
+<div class="flex flex-col">
+<h1 class="font-display-pixel text-headline-lg text-primary uppercase tracking-widest">EcoPixel RPG</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></span>
+<span class="font-label-tech text-label-pixel-sm text-on-surface-variant uppercase">Terminal Hub v1.0.4 - Link Active</span>
+</div>
+</div>
+<div class="flex gap-margin-edge">
+<button class="text-on-surface-variant hover:text-tertiary transition-colors active:scale-95 duration-75">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</button>
+<button class="text-on-surface-variant hover:text-tertiary transition-colors active:scale-95 duration-75">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col bg-surface/80 backdrop-blur-xl h-full w-64 border-r-2 border-outline-variant pt-32">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 p-3 bg-secondary-container rounded-lg border-l-4 border-tertiary">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant overflow-hidden">
+<img alt="Survivor Portrait" class="w-full h-full object-cover" data-alt="A detailed pixel-art portrait of a futuristic scavenger wearing a rugged gas mask and an orange tinted visor. The character has a weathered, technical look with glowing cybernetic implants visible on the neck, set against a dark, rainy industrial background with neon purple highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4Qp7ZDfnFnhShbuZRngKjpdIA7KBN8L0ivepEjgo4A7woKZxDvZtVbtRKsnXkhK7TS4fn8dh-yS6XNZ__ixRUuNe8iVT4o6A7awIQOJt0ZS7pP98AEfDvJN2WUFGV1e_KWEphgrFsADC8IXm554IQE2k-5-3vI0AyJ-MX5iJtsKKIgIWK39JMe1_z1SAKwvbXyHNLAjbr_ya9RSHjP2hBHwjYS4QO4MqU_dHjR9lUdpm_crHWCH3eBlXSfzUPCxtj5OeVaxg0zzzC"/>
+</div>
+<div>
+<p class="font-label-tech text-label-tech text-on-secondary-container leading-none">Level 14 Scavenger</p>
+<p class="font-label-tech text-[10px] text-on-surface-variant mt-1 uppercase tracking-tighter">Sector 7-G / Root Access</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1 overflow-y-auto">
+<p class="px-4 py-2 font-label-pixel-sm text-outline-variant uppercase">Navigation Hierarchy</p>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container border-l-4 border-tertiary px-4 py-3 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-label-tech text-label-tech uppercase">System Hub</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant hover:text-on-surface transition-colors active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-tech text-label-tech uppercase">Setup</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant hover:text-on-surface transition-colors active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-tech text-label-tech uppercase">Missions</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-variant hover:text-on-surface transition-colors active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-label-tech text-label-tech uppercase">World</span>
+</a>
+<a class="flex items-center gap-3 text-on-surfa

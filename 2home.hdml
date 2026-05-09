@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pixel-border-inset {
+            box-shadow: inset 2px 2px 0px 0px rgba(255,255,255,0.1), inset -2px -2px 0px 0px rgba(0,0,0,0.5);
+        }
+        .pixel-border-glow {
+            box-shadow: 0 0 0 2px #141218, 0 0 0 4px #cfbcff;
+        }
+        .glass-panel {
+            background: rgba(20, 18, 24, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(203, 196, 210, 0.2);
+        }
+        .status-bar-bg {
+            background: #141218;
+            border: 2px solid #494551;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#ffdf93",
+                      "on-secondary": "#342b4b",
+                      "surface-bright": "#3b383e",
+                      "surface": "#141218",
+                      "on-primary": "#381e72",
+                      "inverse-surface": "#e6e0e9",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "secondary": "#cdc0e9",
+                      "on-tertiary-fixed": "#241a00",
+                      "tertiary": "#e7c365",
+                      "surface-container-high": "#2b292f",
+                      "on-primary-container": "#e0d2ff",
+                      "surface-dim": "#141218",
+                      "primary-fixed-dim": "#cfbcff",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "tertiary-container": "#c9a74d",
+                      "outline": "#948e9c",
+                      "error-container": "#93000a",
+                      "secondary-fixed": "#e9ddff",
+                      "primary-container": "#6750a4",
+                      "surface-container-lowest": "#0f0d13",
+                      "inverse-primary": "#6750a4",
+                      "surface-variant": "#36343a",
+                      "inverse-on-surface": "#322f35",
+                      "background": "#141218",
+                      "primary": "#cfbcff",
+                      "on-secondary-container": "#bfb2da",
+                      "outline-variant": "#494551",
+                      "surface-container-highest": "#36343a",
+                      "surface-container": "#211f24",
+                      "secondary-container": "#4d4465",
+                      "error": "#ffb4ab",
+                      "surface-tint": "#cfbcff",
+                      "surface-container-low": "#1d1b20",
+                      "on-secondary-fixed": "#1f1635",
+                      "on-primary-fixed": "#22005d",
+                      "on-tertiary": "#3e2e00",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "primary-fixed": "#e9ddff",
+                      "on-surface": "#e6e0e9",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "on-tertiary-container": "#503d00",
+                      "on-error-container": "#ffdad6",
+                      "on-surface-variant": "#cbc4d2",
+                      "on-error": "#690005",
+                      "on-background": "#e6e0e9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "panel-padding": "24px",
+                      "unit": "4px",
+                      "pixel-step": "4px",
+                      "margin-edge": "32px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "label-tech": ["JetBrains Mono"],
+                      "headline-lg": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Space Grotesk"],
+                      "label-pixel-sm": ["JetBrains Mono"],
+                      "display-pixel": ["Space Grotesk"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                      "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden select-none cursor-default font-body-md">
+<!-- GAME WORLD CANVAS (SIMULATED BG) -->
+<div class="fixed inset-0 z-0 bg-cover bg-center" data-alt="A detailed isometric 2D pixel-art interior of a futuristic survival apartment. A character sprite stands near a cozy pixelated bed with teal sheets. To the right is a high-tech computer desk with glowing monitors and an industrial air purifier emitting a soft blue neon light. Large windows reveal a dark, thick smog-filled cityscape outside, contrasting with the warm, amber indoor lighting. The floor is dark polished concrete with visible 4x4 pixel tiling and neon wire accents running along the walls." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcw48egRYWtEUnerccXQhjxB9ou9vsuP6gmbiSKCw9BX-hyjD7odDuBq2d1gIJ8KZlO1HhLZT2MNS46H3fMIFLQgJEQ07YISAO4E-vJRVpSetAW_bXHzxF7G1On1gOPtgW0QfPQ50MsjVacl0TMymbmdqkZ4ctzXcwcCviYABxHxEHWzsiejJ3lymlNDZEY3dqV0Vd2-9xcTFFnyOsFFVYoGW8ZPFulfIPXnbSv_5wvkBZa3XK041uRyIVS6j0tMlqZ-yVR1fYKP06');">
+<!-- Interior Glow Overlay -->
+<div class="absolute inset-0 bg-gradient-to-tr from-surface/40 via-transparent to-tertiary/10 mix-blend-overlay"></div>
+<div class="scanline absolute inset-0 opacity-20"></div>
+</div>
+<!-- Top Navigation Bar (Shared Component Interface) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-start px-margin-edge pt-panel-padding">
+<div class="flex flex-col">
+<h1 class="font-display-pixel text-headline-lg text-primary uppercase tracking-widest drop-shadow-md">EcoPixel RPG</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-tech text-label-tech text-on-surface-variant uppercase">Safe Zone: Sector 7-G Habitat</span>
+</div>
+</div>
+<div class="flex gap-gutter">
+<button class="bg-surface-container/60 backdrop-blur-md p-2 border-2 border-outline-variant hover:border-primary transition-all">
+<span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+</button>
+<button class="bg-surface-container/60 backdrop-blur-md p-2 border-2 border-outline-variant hover:border-primary transition-all relative">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-background"></span>
+</button>
+</div>
+</header>
+<!-- TOP-LEFT: MULTI-BAR STATUS HUD -->
+<div class="fixed top-[100px] left-margin-edge z-50 flex flex-col gap-3 w-64 p-4 glass-panel pixel-border-inset">
+<!-- HP -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center px-1">
+<span class="font-label-pixel-sm text-label-pixel-sm text-on-surface-variant uppercase">Integrity</span>
+<span class="font-label-tech text-label-tech text-primary">100%</span>
+</div>
+<div class="status-bar-bg h-4 w-full relative">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary w-[100%] shadow-[0_0_8px_rgba(207,188,255,0.4)]"></div>
+</div>
+</div>
+<!-- Energy -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center px-1">
+<span class="font-label-pixel-sm text-label-pixel-sm text-on-surface-variant uppercase">Energy</span>
+<span class="font-label-tech text-label-tech text-tertiary">64%</span>
+</div>
+<div class="status-bar-bg h-4 w-full relative">
+<div class="h-full bg-gradient-to-r from-tertiary-container to-tertiary w-[64%] shadow-[0_0_8px_rgba(231,195,101,0.4)]"></div>
+</div>
+</div>
+<!-- Pollution (Resistance) -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center px-1">
+<span class="font-label-pixel-sm text-label-pixel-sm text-on-surface-variant uppercase">Filter</span>
+<span class="font-label-tech text-label-tech text-secondary">0.02 PM</span>
+</div>
+<div class="status-bar-bg h-4 w-full relative">
+<div class="h-full bg-gradient-to-r from-secondary-container to-secondary w-[15%]"></div>
+</div>
+</div>
+
+<a href="map.html">
+  <button>Go Outside</button>
+</a>
+
+
+<div id="mapButton">
+  🗺️ Map
+</div>

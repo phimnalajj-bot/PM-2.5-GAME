@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#322f35",
+            "surface-dim": "#141218",
+            "on-primary-container": "#e0d2ff",
+            "surface-tint": "#cfbcff",
+            "background": "#141218",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "surface": "#141218",
+            "on-primary-fixed": "#22005d",
+            "primary-container": "#6750a4",
+            "on-primary": "#381e72",
+            "on-tertiary": "#3e2e00",
+            "primary-fixed-dim": "#cfbcff",
+            "surface-bright": "#3b383e",
+            "surface-container-highest": "#36343a",
+            "inverse-primary": "#6750a4",
+            "on-secondary-fixed": "#1f1635",
+            "on-primary-fixed-variant": "#4f378a",
+            "tertiary-fixed": "#ffdf93",
+            "primary-fixed": "#e9ddff",
+            "on-tertiary-fixed-variant": "#594400",
+            "on-tertiary-fixed": "#241a00",
+            "surface-container-low": "#1d1b20",
+            "on-background": "#e6e0e9",
+            "on-secondary": "#342b4b",
+            "tertiary-container": "#c9a74d",
+            "inverse-surface": "#e6e0e9",
+            "on-error-container": "#ffdad6",
+            "surface-variant": "#36343a",
+            "secondary-fixed-dim": "#cdc0e9",
+            "outline": "#948e9c",
+            "secondary-fixed": "#e9ddff",
+            "tertiary-fixed-dim": "#e7c365",
+            "secondary": "#cdc0e9",
+            "on-secondary-fixed-variant": "#4b4263",
+            "secondary-container": "#4d4465",
+            "on-surface": "#e6e0e9",
+            "on-surface-variant": "#cbc4d2",
+            "on-error": "#690005",
+            "on-tertiary-container": "#503d00",
+            "primary": "#cfbcff",
+            "surface-container-lowest": "#0f0d13",
+            "surface-container": "#211f24",
+            "outline-variant": "#494551",
+            "surface-container-high": "#2b292f",
+            "tertiary": "#e7c365",
+            "on-secondary-container": "#bfb2da"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "panel-padding": "24px",
+            "margin-edge": "32px",
+            "gutter": "16px",
+            "unit": "4px",
+            "pixel-step": "4px"
+          },
+          "fontFamily": {
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-pixel": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "label-tech": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "label-pixel-sm": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .pixel-bevel {
+      box-shadow: inset 2px 2px 0 0 rgba(255, 255, 255, 0.1), inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+    }
+    .pixel-bevel:active {
+      box-shadow: inset -2px -2px 0 0 rgba(255, 255, 255, 0.1), inset 2px 2px 0 0 rgba(0, 0, 0, 0.4);
+    }
+    .pixel-border-neon {
+      border: 2px solid;
+      border-image-slice: 1;
+      border-width: 2px;
+      border-image-source: linear-gradient(to bottom right, #cfbcff, #e7c365);
+    }
+    .map-container {
+      background-size: cover;
+      background-position: center;
+      image-rendering: pixelated;
+    }
+    .marker-pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge py-unit bg-surface-container/80 dark:bg-surface-container-low/80 backdrop-blur-xl border-b-2 border-outline-variant dark:border-outline">
+<div class="flex items-center gap-4">
+<span class="font-display-pixel text-display-pixel text-primary dark:text-surface-tint tracking-tighter text-[24px]">EcoPixel RPG</span>
+<div class="h-6 w-[2px] bg-outline-variant"></div>
+<span class="font-label-tech text-label-tech text-primary dark:text-primary-fixed uppercase">Tactical Map Overlay v4.2</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-4">
+<button class="font-label-tech text-label-tech text-primary dark:text-primary-fixed font-bold hover:bg-primary-container/20 px-3 py-1 rounded transition-colors scale-95 transition-transform duration-100">World Map</button>
+<button class="font-label-tech text-label-tech text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/20 px-3 py-1 rounded transition-colors">Inventory</button>
+<button class="font-label-tech text-label-tech text-on-surface-variant dark:text-on-surface-variant opacity-70 hover:bg-primary-container/20 px-3 py-1 rounded transition-colors">Missions</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-primary-container/20 p-2 rounded-full cursor-pointer transition-colors" data-icon="account_circle">account_circle</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-primary-container/20 p-2 rounded-full cursor-pointer transition-colors" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- Side Navigation Shell (Hidden on Mobile) -->
+<aside class="fixed left-0 top-0 h-full z-40 hidden md:flex flex-col py-panel-padding bg-surface-container-highest/90 dark:bg-surface-container-lowest/90 backdrop-blur-2xl w-64 border-r-2 border-outline-variant mt-16 shadow-2xl dark:shadow-none">
+<div class="px-6 mb-8 mt-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-secondary-container rounded-lg border-2 border-primary overflow-hidden">
+<img alt="Character Portrait" data-alt="A detailed pixel-art portrait of a futuristic scientist-adventurer wearing high-tech goggles and a protective charcoal-colored enviro-suit. The background is a soft blue glow from a holographic terminal. The style is classic 16-bit RPG with modern dynamic lighting and sharp pixel edges. Colors include sky blue and deep industrial grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD7RpiZwCqvPtN2YMe02cBDOGxEhrbHcMvCUMm3GxcsJjFY2U3PKoj-6uxfLi7Iz0UUzE3_zzBCu_UlGv8_NqS90a98BYBqmDWAcdukb0jjMk0diFTS4c_hkvnhNs-K4d-Z85UqU28My-QgXD-NqAcS-rdQ-VLAgSj3PF_iFBza1N8eQ0UsUTT5NZsn3qVH63vzvibUU5hlIqVdT4e5H_kn_AilFRslsiMtvrIEV0VRTgNzZ9lsDGWMcVXUguOqJ3fq4KtE6F-lH5r"/>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-tertiary dark:text-tertiary-fixed leading-tight">Scientist-Adventurer</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-[12px]">Level 12 Eco-Guardian</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="bg-secondary-container text-on-secondary-container dark:bg-secondary dark:text-on-secondary border-l-4 border-primary px-4 py-3 mx-2 rounded-lg flex items-center gap-3 translate-x-1 duration-150">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md">World Map</span>
+</div>
+<div class="text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 flex items-center gap-3 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Inventory</span>
+</div>
+<div class="text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 flex items-center gap-3 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-body-md">Missions</span>
+</div>
+<div class="text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 flex items-center gap-3 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md">Database</span>
+</div>
+</nav>
+<div class="mt-auto px-4 pb-20">
+<button class="w-full py-3 bg-primary text-on-primary font-bold rounded-lg pixel-bevel hover:bg-primary/90 transition-colors">
+        Save Progress
+      </button>
+<div class="mt-4 pt-4 border-t border-outline-variant space-y-1"
+
+<a href="game play.html">
+  <button>Start Mission</button>
+</a>

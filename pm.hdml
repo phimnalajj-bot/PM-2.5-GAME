@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPixel RPG - Air Quality Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pixel-bevel {
+            box-shadow: inset 2px 2px 0px 0px rgba(255,255,255,0.1), inset -2px -2px 0px 0px rgba(0,0,0,0.5);
+        }
+        .pixel-border-hazard {
+            border: 2px solid #93000a;
+            box-shadow: 0 0 15px rgba(147, 0, 10, 0.4);
+        }
+        .glass-panel {
+            background: rgba(20, 18, 24, 0.8);
+            backdrop-filter: blur(16px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#342b4b",
+                      "on-background": "#e6e0e9",
+                      "surface-container-low": "#1d1b20",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "on-tertiary-fixed": "#241a00",
+                      "surface-variant": "#36343a",
+                      "on-error-container": "#ffdad6",
+                      "inverse-surface": "#e6e0e9",
+                      "tertiary-container": "#c9a74d",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "on-secondary-fixed": "#1f1635",
+                      "primary-fixed": "#e9ddff",
+                      "tertiary-fixed": "#ffdf93",
+                      "primary-container": "#6750a4",
+                      "on-primary": "#381e72",
+                      "surface": "#141218",
+                      "on-primary-fixed": "#22005d",
+                      "inverse-primary": "#6750a4",
+                      "surface-container-highest": "#36343a",
+                      "surface-bright": "#3b383e",
+                      "primary-fixed-dim": "#cfbcff",
+                      "on-tertiary": "#3e2e00",
+                      "surface-tint": "#cfbcff",
+                      "on-primary-container": "#e0d2ff",
+                      "surface-dim": "#141218",
+                      "inverse-on-surface": "#322f35",
+                      "error-container": "#93000a",
+                      "error": "#ffb4ab",
+                      "background": "#141218",
+                      "on-secondary-container": "#bfb2da",
+                      "outline-variant": "#494551",
+                      "surface-container": "#211f24",
+                      "surface-container-lowest": "#0f0d13",
+                      "tertiary": "#e7c365",
+                      "surface-container-high": "#2b292f",
+                      "on-error": "#690005",
+                      "secondary-container": "#4d4465",
+                      "on-surface-variant": "#cbc4d2",
+                      "on-surface": "#e6e0e9",
+                      "primary": "#cfbcff",
+                      "on-tertiary-container": "#503d00",
+                      "secondary-fixed": "#e9ddff",
+                      "outline": "#948e9c",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "secondary": "#cdc0e9",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "tertiary-fixed-dim": "#e7c365"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "panel-padding": "24px",
+                      "margin-edge": "32px",
+                      "gutter": "16px",
+                      "unit": "4px",
+                      "pixel-step": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-pixel-sm": ["JetBrains Mono"],
+                      "headline-lg": ["Space Grotesk"],
+                      "label-tech": ["JetBrains Mono"],
+                      "headline-md": ["Space Grotesk"],
+                      "display-pixel": ["Space Grotesk"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge py-unit bg-surface-container/80 dark:bg-surface-container-low/80 backdrop-blur-xl border-b-2 border-outline-variant dark:border-outline">
+<div class="flex items-center gap-4">
+<span class="font-display-pixel text-headline-md text-primary dark:text-surface-tint tracking-tighter">EcoPixel RPG</span>
+<div class="h-6 w-[2px] bg-outline-variant"></div>
+<span class="font-label-tech text-label-tech text-on-surface-variant uppercase tracking-widest">Environmental Analysis Overlay</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1 bg-error-container/20 rounded-lg border border-error/30">
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+<span class="font-label-tech text-label-tech text-error uppercase">Hazardous Zone</span>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">settings</button>
+<button class="material-symbols-outlined text-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">close</button>
+</div>
+</header>
+<!-- Sidebar Navigation -->
+<nav class="fixed left-0 top-0 h-full z-40 flex flex-col py-panel-padding bg-surface-container-highest/90 dark:bg-surface-container-lowest/90 backdrop-blur-2xl border-r-2 border-outline-variant w-64 pt-24">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/40">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary">Guardian-7</p>
+<p class="font-label-pixel-sm text-label-pixel-sm text-on-surface-variant opacity-70 uppercase">Scientist Lvl 12</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 flex items-center gap-3 font-label-tech transition-all duration-200" href="#">
+<span class="material-symbols-outlined">map</span> World Map
+            </a>
+<a class="bg-secondary-container text-on-secondary-container dark:bg-secondary dark:text-on-secondary border-l-4 border-primary px-4 py-3 mx-2 rounded-lg flex items-center gap-3 font-label-tech translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span> Database
+            </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 flex items-center gap-3 font-label-tech transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Inventory
+            </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-variant/50 flex items-center gap-3 font-label-tech transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assignment</span> Missions
+            </a>
+</div>
+<div class="mt-auto px-4 pb-8 flex flex-col gap-4">
+<button class="w-full py-3 bg-primary text-on-primary font-label-tech rounded-lg pixel-bevel hover:bg-primary-container transition-colors uppercase tracking-widest">
+                Save Progress
+            </button>
+<div class="flex border-t border-outline-variant pt-4 gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<button class="p-2 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">logout</span></button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 pb-24 px-margin-edge min-h-screen relative overflow-y-auto">
+<!-- Background Ambient Sprite (Simulated) -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,_#6750a4_0%,_transparent_60%)]"></div>
+<div class="relative z-10 max-w-6xl mx-auto py-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h1 class="font-headline-lg text-display-pixel text-primary mb-2">Atmospheric Breach Detected</h1>
+<p class="font-label-tech text-on-
+
+<a href="hospital.html">
+  <button>Go Hospital</button>
+</a>

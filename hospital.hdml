@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pixel-bevel {
+            box-shadow: inset 2px 2px 0px 0px rgba(255,255,255,0.1), inset -2px -2px 0px 0px rgba(0,0,0,0.4);
+        }
+        .pixel-border {
+            border: 2px solid;
+            border-image-slice: 1;
+            border-width: 2px;
+            border-image-source: linear-gradient(to bottom, #948e9c, #494551);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#322f35",
+                        "surface-dim": "#141218",
+                        "on-primary-container": "#e0d2ff",
+                        "surface-tint": "#cfbcff",
+                        "background": "#141218",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "surface": "#141218",
+                        "on-primary-fixed": "#22005d",
+                        "primary-container": "#6750a4",
+                        "on-primary": "#381e72",
+                        "on-tertiary": "#3e2e00",
+                        "primary-fixed-dim": "#cfbcff",
+                        "surface-bright": "#3b383e",
+                        "surface-container-highest": "#36343a",
+                        "inverse-primary": "#6750a4",
+                        "on-secondary-fixed": "#1f1635",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "tertiary-fixed": "#ffdf93",
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-container-low": "#1d1b20",
+                        "on-background": "#e6e0e9",
+                        "on-secondary": "#342b4b",
+                        "tertiary-container": "#c9a74d",
+                        "inverse-surface": "#e6e0e9",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#36343a",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "outline": "#948e9c",
+                        "secondary-fixed": "#e9ddff",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "secondary": "#cdc0e9",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "secondary-container": "#4d4465",
+                        "on-surface": "#e6e0e9",
+                        "on-surface-variant": "#cbc4d2",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#503d00",
+                        "primary": "#cfbcff",
+                        "surface-container-lowest": "#0f0d13",
+                        "surface-container": "#211f24",
+                        "outline-variant": "#494551",
+                        "surface-container-high": "#2b292f",
+                        "tertiary": "#e7c365",
+                        "on-secondary-container": "#bfb2da"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "panel-padding": "24px",
+                        "margin-edge": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "pixel-step": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-pixel": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-tech": ["JetBrains Mono"],
+                        "headline-lg": ["Space Grotesk"],
+                        "label-pixel-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden font-body-md select-none">
+<!-- Top Navigation Bar (JSON Anchor) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-edge py-unit bg-surface-container/80 dark:bg-surface-container-low/80 backdrop-blur-xl border-b-2 border-outline-variant dark:border-outline">
+<div class="flex items-center gap-unit">
+<span class="font-display-pixel text-display-pixel text-primary dark:text-surface-tint tracking-tighter text-[24px]">EcoPixel RPG</span>
+</div>
+<div class="flex gap-4 items-center">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer hover:bg-primary-container/20 p-2 rounded-lg transition-colors" data-icon="account_circle">account_circle</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-70 cursor-pointer hover:bg-primary-container/20 p-2 rounded-lg transition-colors" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- Game Canvas / World View -->
+<main class="relative w-full h-screen pt-[60px] pb-[80px]">
+<!-- Hospital Ward Background Layer -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A detailed pixel-art style interior of a futuristic hospital ward. The scene features clean white and clinical blue surfaces with high-tech glowing medical screens displaying biological data and pollution levels in the background. Soft neon blue lighting illuminates the space, creating a calm and professional atmosphere. Rows of advanced medical pods and machinery are visible, blending retro 16-bit artistry with sleek modern scientific technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDM0e1PwProG6vRtvGbXauzi0BWF7DlTBvKaeh2Ca0ZEmfjR6GPOIbGiW5o7UPu7BPYFVFoZXXxid0p-oEIgKeovfzz7nJvcWBPqb2x_H3ewZ1iZnG_-y8TgT3LLMs3nSmR-0TW5zInGKgq0iaunMOJg7UTfL65T5ktUBwO794V8mqoBI0913GgFXz5wrfuVD0vwYLMxb62TErWnPfOyim4OL8qwSUpGIh_kCERSUtAn1m76jJ5zAyE3oXe2f0Jv8_yGFeQzhCwXTry')">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
+<div class="absolute inset-0 backdrop-blur-[2px]"></div>
+</div>
+</div>
+<!-- Minimized HUD -->
+<div class="absolute top-[80px] left-margin-edge z-20 flex flex-col gap-2">
+<!-- Health Bar -->
+<div class="flex items-center gap-2 bg-surface-container-low/90 backdrop-blur-md p-2 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-error text-sm" data-icon="favorite">favorite</span>
+<div class="w-32 h-3 bg-surface-container-highest border-2 border-surface-dim overflow-hidden">
+<div class="h-full bg-error w-[45%] relative">
+<div class="absolute top-0 right-0 w-1 h-full bg-white/40"></div>
+</div>
+</div>
+<span class="font-label-tech text-label-tech">45/100</span>
+</div>
+<!-- Pollution Level -->
+<div class="flex items-center gap-2 bg-surface-container-low/90 backdrop-blur-md p-2 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="air">air</span>
+<div class="w-32 h-3 bg-surface-container-highest border-2 border-surface-dim overflow-hidden">
+<div class="h-full bg-tertiary w-[70%] relative">
+<div class="absolute top-0 right-0 w-1 h-full bg-white/40"></div>
+</div>
+</div>
+<span class="font-label-tech text-label-tech">70% TOX</span>
+</div>
+</div>
+<!-- NPC: The Doctor -->
+<div class="absolute bottom-[20%] left-[30%] z-10 flex flex-col items-center">
+<div class="relative">
+<img class="w-24 h-48 object-cover rounded-lg border-2 border-primary-fixed shadow-[0_0_20px_rgba(207,188,255,0.4)]" data-alt="A pixel-art character of a professional medical doctor standing in a hospital setting. The doctor is wearing a clean white lab coat with a subtle sky blue role badge visible on the lapel. The art style is chunky 16-bit pixel art with high contrast outlines. The character has a calm, helpful expression and is positioned next to an advanced medical bed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdsjcjcppCpqGH4YRs3BZXs51nApxdKb1FmzrLyRN4uemwoW0as6K9nr45IFgV_lFpUSrs_u3jW6eOtEbRdF1P0T8pxFtBBNbmnptNoUBuOL1msKIw_V5Vl69Kmn0XfWa0P8rtxVNF9lEfEPNAEwQ
+
+
+<a href="shop.html">
+  <button>Go Shop</button>
+</a>
+
+
+<div id="mapButton">
+  🗺️ Map
+</div>

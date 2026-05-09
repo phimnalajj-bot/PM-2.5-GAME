@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPixel RPG - Launcher</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pixel-bevel {
+            box-shadow: inset 2px 2px 0px 0px rgba(255,255,255,0.1), inset -2px -2px 0px 0px rgba(0,0,0,0.5);
+        }
+        .glass-panel {
+            background: rgba(20, 18, 24, 0.8);
+            backdrop-filter: blur(16px);
+        }
+        .scanline {
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0) 50%,
+                rgba(0, 0, 0, .1) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#cfbcff",
+                      "on-tertiary-fixed": "#241a00",
+                      "tertiary": "#e7c365",
+                      "surface-dim": "#141218",
+                      "surface-bright": "#3b383e",
+                      "surface-container-lowest": "#0f0d13",
+                      "surface-container-highest": "#36343a",
+                      "inverse-primary": "#6750a4",
+                      "primary-fixed": "#e9ddff",
+                      "tertiary-container": "#c9a74d",
+                      "surface": "#141218",
+                      "on-primary": "#381e72",
+                      "on-tertiary-container": "#503d00",
+                      "surface-variant": "#36343a",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "outline-variant": "#494551",
+                      "outline": "#948e9c",
+                      "primary-container": "#6750a4",
+                      "secondary-fixed": "#e9ddff",
+                      "on-tertiary": "#3e2e00",
+                      "on-error": "#690005",
+                      "surface-container": "#211f24",
+                      "secondary": "#cdc0e9",
+                      "surface-container-high": "#2b292f",
+                      "primary": "#cfbcff",
+                      "background": "#141218",
+                      "on-surface": "#e6e0e9",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "secondary-container": "#4d4465",
+                      "on-background": "#e6e0e9",
+                      "tertiary-fixed": "#ffdf93",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "inverse-on-surface": "#322f35",
+                      "surface-container-low": "#1d1b20",
+                      "on-secondary-container": "#bfb2da",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "on-surface-variant": "#cbc4d2",
+                      "on-primary-fixed": "#22005d",
+                      "on-primary-container": "#e0d2ff",
+                      "on-secondary-fixed": "#1f1635",
+                      "primary-fixed-dim": "#cfbcff",
+                      "on-error-container": "#ffdad6",
+                      "inverse-surface": "#e6e0e9",
+                      "error-container": "#93000a",
+                      "on-secondary": "#342b4b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-edge": "32px",
+                      "panel-padding": "24px",
+                      "pixel-step": "4px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "display-pixel": ["Space Grotesk"],
+                      "label-pixel-sm": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "label-tech": ["JetBrains Mono"],
+                      "headline-md": ["Space Grotesk"],
+                      "headline-lg": ["Space Grotesk"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "display-pixel": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "label-pixel-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-tech": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden relative">
+<!-- CRT Overlay Effect -->
+<div class="fixed inset-0 scanline z-50 pointer-events-none opacity-10"></div>
+<!-- Background Ambient Glow -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,_#6750a4_0%,_transparent_60%)]"></div>
+<!-- Main Launcher Container -->
+<main class="relative z-10 max-w-7xl mx-auto px-margin-edge py-16 min-h-screen flex flex-col items-center justify-center">
+<!-- Header / Logo -->
+<div class="text-center mb-16 animate-pulse-slow">
+<h1 class="font-display-pixel text-7xl md:text-8xl text-primary tracking-tighter mb-4">
+                ECOPIXEL<br/><span class="text-tertiary">SYSTEM HUB</span>
+</h1>
+<p class="font-label-tech text-label-tech text-on-surface-variant uppercase tracking-[0.3em]">
+                System Status: <span class="text-primary">Online</span> // Sector: 4-Industrial
+            </p>
+</div>
+<!-- Launch Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+<!-- Module: Start Screen (Target Link) -->
+<a class="group relative bg-surface-container-high/40 backdrop-blur-xl border-2 border-primary/30 rounded-xl p-8 hover:border-primary transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center" href="start.html">
+<div class="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-4xl">play_arrow</span>
+</div>
+<h3 class="font-headline-md text-primary mb-2">Initialize Game</h3>
+<p class="font-label-tech text-on-surface-variant text-xs uppercase opacity-70">Enter the atmospheric breach</p>
+<div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</div>
+</a>
+<!-- Module: Environmental Database (Current Context) -->
+<a class="group relative bg-surface-container-high/40 backdrop-blur-xl border-2 border-outline-variant/30 rounded-xl p-8 hover:border-secondary transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center" href="pm.html">
+<div class="w-16 h-16 rounded-lg bg-secondary/20 flex items-center justify-center mb-6 group-hover:bg-secondary/40 transition-colors">
+<span class="material-symbols-outlined text-secondary text-4xl">analytics</span>
+</div>
+<h3 class="font-headline-md text-secondary mb-2">Analysis Overlay</h3>
+<p class="font-label-tech text-on-surface-variant text-xs uppercase opacity-70">Real-time air quality data</p>
+<span class="mt-4 px-3 py-1 bg-secondary/10 text-secondary text-[10px] font-label-pixel-sm rounded border border-secondary/20">ACTIVE MODULE</span>
+</a>
+<!-- Module: World Map -->
+<a class="group relative bg-surface-container-high/40 backdrop-blur-xl border-2 border-outline-variant/30 rounded-xl p-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center" href="map.html">
+<div class="w-16 h-16 rounded-lg bg-tertiary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-tertiary text-4xl">map</span>
+</div>
+<h3 class="font-headline-md text-tertiary mb-2">Sector Map</h3>
+<p class="font-label-tech text-on-surface-variant text-xs uppercase opacity-70">Satellite navigation data</p>
+<span class="mt-4 text-[10px] font-label-pixel-sm text-error uppercase">Connection Lost</span>
+</a>
+<!-- Module: Inventory -->
+<a class="group relative bg-surface-container-high/40 backdrop-blur-xl border-2 border-outline-variant/30 rounded-xl p-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 hover:scale-[1.02] flex flex-col items-center text-center" href="shop.html">
+<div class="w-16 h-16 rounded-lg bg-outline/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-surface text-4xl">inventory_2</span>
+</div>
+<h3 class="font-headline-md text-on-surface mb-2">Gear Management</h3>
+<p class="font-label-tech text-on-surface-variant text-xs uppercase opacity-70">Bio-filter maintenance</p>
+</a>
+<!-- Module: Mission Log -->
+<a class="group relative bg-surface-container-high/40 backdrop-blur-xl border-2 border-outline-variant/
+<a href="start.html">
+  <button>Start</button>
+</a>
